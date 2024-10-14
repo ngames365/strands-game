@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="description" content="Challenge yourself to find as many word search puzzles">
+        <meta name="viewport" content="width=device-width">
+        <link rel="icon" type="image/png" href="./favicon.png" sizes="256x256">
+        <link rel="stylesheet" href="./style.css">
+        <title>Strands Game - Play Free on NGames</title>
+    </head>
+    <body>
+        <main>
+            <div class="top-bar">
+                <div class="container">
+                    <div class="element element-middle">
+                        <a target="_blank" href="/" title="Strands">
+                            <img src="./strands-puzzle-logo.png" alt="Logo" title="Logo">
+                        </a>
+                    </div>
+                    <div class="element element-right">
+                        <button id="help-button" onclick="openHowToPlay('block')" aria-label="help-button">
+                            <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-vubbuv" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="HelpOutlineIcon" style="height: 30px; width: 30px;">
+                                <path d="M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="game-wrapper">
+                <style>
+                    astro-island, astro-slot, astro-static-slot {
+                        display: contents
+                    }
+                </style>
+                <script>
+                    ( () => {
+                        var e = async t => {
+                            await (await t())()
+                        }
+                        ;
+                        (self.Astro || (self.Astro = {})).load = e;
+                        window.dispatchEvent(new Event("astro:load"));
+                    }
+                    )();
+                    ;( () => {
+                        var v = Object.defineProperty;
+                        var A = (c, s, a) => s in c ? v(c, s, {
+                            enumerable: !0,
+                            configurable: !0,
+                            writable: !0,
+                            value: a
+                        }) : c[s] = a;
+                        var d = (c, s, a) => (A(c, typeof s != "symbol" ? s + "" : s, a),
+                        a);
+                        var u;
+                        {
+                            let c = {
+                                0: t => m(t),
+                                1: t => a(t),
+                                2: t => new RegExp(t),
+                                3: t => new Date(t),
+                                4: t => new Map(a(t)),
+                                5: t => new Set(a(t)),
+                                6: t => BigInt(t),
+                                7: t => new URL(t),
+                                8: t => new Uint8Array(t),
+                                9: t => new Uint16Array(t),
+                                10: t => new Uint32Array(t)
+                            }
+                              , s = t => {
+                                let[e,n] = t;
+                                return e in c ? c[e](n) : void 0
+                            }
+                              , a = t => t.map(s)
+                              , m = t => typeof t != "object" || t === null ? t : Object.fromEntries(Object.entries(t).map( ([e,n]) => [e, s(n)]));
+                            customElements.get("astro-island") || customElements.define("astro-island", (u = class extends HTMLElement {
+                                constructor() {
+                                    super(...arguments);
+                                    d(this, "Component");
+                                    d(this, "hydrator");
+                                    d(this, "hydrate", async () => {
+                                        var f;
+                                        if (!this.hydrator || !this.isConnected)
+                                            return;
+                                        let e = (f = this.parentElement) == null ? void 0 : f.closest("astro-island[ssr]");
+                                        if (e) {
+                                            e.addEventListener("astro:hydrate", this.hydrate, {
+                                                once: !0
+                                            });
+                                            return
+                                        }
+                                        let n = this.querySelectorAll("astro-slot")
+                                          , r = {}
+                                          , l = this.querySelectorAll("template[data-astro-template]");
+                                        for (let o of l) {
+                                            let i = o.closest(this.tagName);
+                                            i != null && i.isSameNode(this) && (r[o.getAttribute("data-astro-template") || "default"] = o.innerHTML,
+                                            o.remove())
+                                        }
+                                        for (let o of n) {
+                                            let i = o.closest(this.tagName);
+                                            i != null && i.isSameNode(this) && (r[o.getAttribute("name") || "default"] = o.innerHTML)
+                                        }
+                                        let h;
+                                        try {
+                                            h = this.hasAttribute("props") ? m(JSON.parse(this.getAttribute("props"))) : {}
+                                        } catch (o) {
+                                            let i = this.getAttribute("component-url") || "<unknown>"
+                                              , b = this.getAttribute("component-export");
+                                            throw b && (i += ` (export ${b})`),
+                                            console.error(`[hydrate] Error parsing props for component ${i}`, this.getAttribute("props"), o),
+                                            o
+                                        }
+                                        let p;
+                                        await this.hydrator(this)(this.Component, h, r, {
+                                            client: this.getAttribute("client")
+                                        }),
+                                        this.removeAttribute("ssr"),
+                                        this.dispatchEvent(new CustomEvent("astro:hydrate"))
+                                    }
+                                    );
+                                    d(this, "unmount", () => {
+                                        this.isConnected || this.dispatchEvent(new CustomEvent("astro:unmount"))
+                                    }
+                                    )
+                                }
+                                disconnectedCallback() {
+                                    document.removeEventListener("astro:after-swap", this.unmount),
+                                    document.addEventListener("astro:after-swap", this.unmount, {
+                                        once: !0
+                                    })
+                                }
+                                connectedCallback() {
+                                    if (!this.hasAttribute("await-children") || document.readyState === "interactive" || document.readyState === "complete")
+                                        this.childrenConnectedCallback();
+                                    else {
+                                        let e = () => {
+                                            document.removeEventListener("DOMContentLoaded", e),
+                                            n.disconnect(),
+                                            this.childrenConnectedCallback()
+                                        }
+                                          , n = new MutationObserver( () => {
+                                            var r;
+                                            ((r = this.lastChild) == null ? void 0 : r.nodeType) === Node.COMMENT_NODE && this.lastChild.nodeValue === "astro:end" && (this.lastChild.remove(),
+                                            e())
+                                        }
+                                        );
+                                        n.observe(this, {
+                                            childList: !0
+                                        }),
+                                        document.addEventListener("DOMContentLoaded", e)
+                                    }
+                                }
+                                async childrenConnectedCallback() {
+                                    let e = this.getAttribute("before-hydration-url");
+                                    e && await import(e),
+                                    this.start()
+                                }
+                                async start() {
+                                    let e = JSON.parse(this.getAttribute("opts"))
+                                      , n = this.getAttribute("client");
+                                    if (Astro[n] === void 0) {
+                                        window.addEventListener(`astro:${n}`, () => this.start(), {
+                                            once: !0
+                                        });
+                                        return
+                                    }
+                                    try {
+                                        await Astro[n](async () => {
+                                            let r = this.getAttribute("renderer-url")
+                                              , [l,{default: h}] = await Promise.all([import(this.getAttribute("component-url")), r ? import(r) : () => () => {}
+                                            ])
+                                              , p = this.getAttribute("component-export") || "default";
+                                            if (!p.includes("."))
+                                                this.Component = l[p];
+                                            else {
+                                                this.Component = l;
+                                                for (let y of p.split("."))
+                                                    this.Component = this.Component[y]
+                                            }
+                                            return this.hydrator = h,
+                                            this.hydrate
+                                        }
+                                        , e, this)
+                                    } catch (r) {
+                                        console.error(`[astro-island] Error hydrating ${this.getAttribute("component-url")}`, r)
+                                    }
+                                }
+                                attributeChangedCallback() {
+                                    this.hydrate()
+                                }
+                            }
+                            ,
+                            d(u, "observedAttributes", ["props"]),
+                            u))
+                        }
+                    }
+                    )();
+                </script>
+                <astro-island uid="zXRjb" prefix="r0" component-url="./_astro/GameWrapper.DnZsFPv9.js" component-export="default" renderer-url="./_astro/client.wTamMP2C.js" props="{}" ssr="" client="load" opts="{&quot;name&quot;:&quot;GameWrapper&quot;,&quot;value&quot;:true}" await-children="">
+                    <div>
+                        <div class="game-container loading">
+                            <div class="topic">Loading...</div>
+                            <div class="message"></div>
+                            <div class="game-grid">
+                                <div class="grid-cell cell-1">?</div>
+                                <div class="grid-cell cell-2">?</div>
+                                <div class="grid-cell cell-3">?</div>
+                                <div class="grid-cell cell-4">?</div>
+                                <div class="grid-cell cell-5">?</div>
+                                <div class="grid-cell cell-6">?</div>
+                                <div class="grid-cell cell-7">?</div>
+                                <div class="grid-cell cell-8">?</div>
+                                <div class="grid-cell cell-9">?</div>
+                                <div class="grid-cell cell-10">?</div>
+                                <div class="grid-cell cell-11">?</div>
+                                <div class="grid-cell cell-12">?</div>
+                                <div class="grid-cell cell-13">?</div>
+                                <div class="grid-cell cell-14">?</div>
+                                <div class="grid-cell cell-15">?</div>
+                                <div class="grid-cell cell-16">?</div>
+                                <div class="grid-cell cell-17">?</div>
+                                <div class="grid-cell cell-18">?</div>
+                                <div class="grid-cell cell-19">?</div>
+                                <div class="grid-cell cell-20">?</div>
+                                <div class="grid-cell cell-21">?</div>
+                                <div class="grid-cell cell-22">?</div>
+                                <div class="grid-cell cell-23">?</div>
+                                <div class="grid-cell cell-24">?</div>
+                                <div class="grid-cell cell-25">?</div>
+                                <div class="grid-cell cell-26">?</div>
+                                <div class="grid-cell cell-27">?</div>
+                                <div class="grid-cell cell-28">?</div>
+                                <div class="grid-cell cell-29">?</div>
+                                <div class="grid-cell cell-30">?</div>
+                                <div class="grid-cell cell-31">?</div>
+                                <div class="grid-cell cell-32">?</div>
+                                <div class="grid-cell cell-33">?</div>
+                                <div class="grid-cell cell-34">?</div>
+                                <div class="grid-cell cell-35">?</div>
+                                <div class="grid-cell cell-36">?</div>
+                                <div class="grid-cell cell-37">?</div>
+                                <div class="grid-cell cell-38">?</div>
+                                <div class="grid-cell cell-39">?</div>
+                                <div class="grid-cell cell-40">?</div>
+                                <div class="grid-cell cell-41">?</div>
+                                <div class="grid-cell cell-42">?</div>
+                                <div class="grid-cell cell-43">?</div>
+                                <div class="grid-cell cell-44">?</div>
+                                <div class="grid-cell cell-45">?</div>
+                                <div class="grid-cell cell-46">?</div>
+                                <div class="grid-cell cell-47">?</div>
+                                <div class="grid-cell cell-48">?</div>
+                            </div>
+                            <div class="word-count">0 of 6 words found.</div>
+                            <div class="progress-indicator"></div>
+                        </div>
+                    </div>
+                </astro-island>
+            </div>
+            <style></style>
+            <div class="page-content css-8ndowl" id="howToPlay" style="display: none;">
+                <div aria-hidden="true" class="MuiBackdrop-root MuiModal-backdrop css-919eu4" style="opacity: 1; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"></div>
+                <div class="inner-wrapper innner css-3vpekc">
+                    <button title="Close" data-close="#howToPlay" class="absolute " aria-label="Close Game Summary Modal" tabindex="0">X
+                </button>
+                    <h3 class="for-content innner">What is Strands Game?</h3>
+                    <p class="innner">Strands Game is a word puzzle game, similar to Connections, where players uncover themed words to fill a board. It is the latest addition to the popular Crossword games by The New York Times.</p>
+                    <h3 id="help-section" class="for-content innner">How to Play Strands Game?</h3>
+                    <img class="ill innner" src="./strands-unlimited.png" alt="how to play Strands Game" title="how to play Strands Game">
+                    <ul class="innner">
+                        <li class="innner">
+                            <strong class="innner">Step 1:</strong>
+                            Look for words related to the puzzle's theme. Correctly identified theme words will turn blue when you use your finger to drag across or tap letters to select them.
+                        </li>
+                        <li class="innner">
+                            <strong class="innner">Step 2:</strong>
+                            Utilize the hint button if you're stuck. You have up to 3 hints for each puzzle. Each hint will highlight the characters of one word, significantly aiding in its discovery.
+                        </li>
+                        <li class="innner">
+                            <strong class="innner">Step 3:</strong>
+                            There are no non-theme words in this game, so focus solely on finding words that fit the puzzle's theme. Use hints strategically to reveal difficult words.
+                        </li>
+                    </ul>
+                    <p class="innner">Additional Help: Since there are no non-theme words to find, the hints are your primary tool for assistance. Plan when to use them, especially for more challenging puzzles, to ensure you can uncover all theme-related words without running out of hints.</p>
+                </div>
+            </div>
+        </main>
+        <script>
+            let checkId = "";
+            let dataRandom = {
+                "_id": "65eb4f671912d7ed43a6372d",
+                "grid": [["V", "C", "E", "Y", "S", "R"], ["T", "L", "W", "E", "H", "U"], ["R", "O", "D", "S", "C", "R"], ["R", "U", "B", "A", "H", "A"], ["Y", "H", "R", "S", "Q", "R"], ["H", "X", "I", "P", "T", "E"], ["D", "M", "C", "N", "L", "E"], ["A", "R", "Y", "S", "Z", "F"]],
+                "validWords": [{
+                    "word": "sprint",
+                    "coord": [[4, 3], [5, 3], [4, 2], [5, 2], [6, 3], [5, 4]]
+                }, {
+                    "word": "hurry",
+                    "coord": [[4, 1], [3, 1], [2, 0], [3, 0], [4, 0]]
+                }, {
+                    "word": "rush",
+                    "coord": [[0, 5], [1, 5], [0, 4], [1, 4]]
+                }, {
+                    "word": "dash",
+                    "coord": [[2, 2], [3, 3], [2, 3], [3, 4]]
+                }, {
+                    "word": "scram",
+                    "coord": [[7, 3], [6, 2], [7, 1], [7, 0], [6, 1]]
+                }, {
+                    "word": "bolt",
+                    "coord": [[3, 2], [2, 1], [1, 1], [1, 0]]
+                }, {
+                    "word": "flee",
+                    "coord": [[7, 5], [6, 4], [6, 5], [5, 5]]
+                }, {
+                    "word": "race",
+                    "coord": [[2, 5], [3, 5], [2, 4], [1, 3]]
+                }],
+                "x": 8,
+                "y": 6,
+                "topic": "DEPART QUICKLY",
+                "gridsize": 48
+            };
+
+            const howToPlayElement = document.getElementById('howToPlay');
+            howToPlayElement.addEventListener('click', function(event) {
+                if (!event.target.classList.contains('innner')) {
+                    openHowToPlay('none');
+                }
+            });
+
+            function openHowToPlay(close) {
+                const howToPlayElement = document.getElementById('howToPlay');
+                howToPlayElement.style.display = close;
+            }
+        </script>
+    </body>
+</html>
